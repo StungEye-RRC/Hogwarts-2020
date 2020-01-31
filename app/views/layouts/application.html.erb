@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hogwarts2020</title>
+    <title>Hogwarts School Web App</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <header>
+        <h1>Hogwarts School of Wiiiiizards and Wiiiitches</h1>
+        <p>
+          <%= link_to 'Home', root_path %>
+        </p>
+      </header>
+      <%= yield %>
+    </div>
   </body>
 </html>
