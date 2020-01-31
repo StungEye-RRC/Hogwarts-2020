@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  get 'houses/index'
-  get 'houses/show'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # GET / => houses#index
+
+  root to: "houses#index"
+
+  # GET /houses/:id => houses#show
+
+  get "houses/:id", to: "houses#show", id: /\d+/, as: "house" # house_path
 end
