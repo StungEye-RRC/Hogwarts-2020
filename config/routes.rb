@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   # GET / => houses#index
-
   root to: "houses#index"
 
+  resources "houses", only: %i[index show]
+  # GET /houses     => houses#index
   # GET /houses/:id => houses#show
-
-  get "houses/:id", to: "houses#show", id: /\d+/, as: "house" # house_path
 end
