@@ -1,6 +1,7 @@
 # Run this script using: rails db:seed
 
 Student.destroy_all
+Teacher.destroy_all
 House.destroy_all
 
 NUMBER_OF_HOUSES = 5
@@ -15,7 +16,13 @@ NUMBER_OF_HOUSES.times do
     # The created student's house_id (FK) will be assigned the house's PK.
     house.students.create(name: Faker::Movies::HarryPotter.unique.character)
   end
+
+  number_of_teachers = rand(1..2)
+  number_of_teachers.times do
+    house.teachers.create(name: Faker::Movies::HarryPotter.unique.character)
+  end
 end
 
 puts "Created #{House.count} Houses."
 puts "Created #{Student.count} Students."
+puts "Created #{Teacher.count} Teachers."

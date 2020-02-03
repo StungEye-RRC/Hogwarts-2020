@@ -1,2 +1,4 @@
-<h1>Students#show</h1>
-<p>Find me in app/views/students/show.html.erb</p>
+<h2><%= @student.name %></h2>
+<p>
+  This student belongs to house <%= link_to @student.house.name, @student.house %>.
+</p>
