@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'students/index'
+  get 'students/show'
   # GET / => houses#index
   root to: "houses#index"
 
