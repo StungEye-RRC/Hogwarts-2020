@@ -1,0 +1,14 @@
+<h2>All Teachers</h2>
+
+<% if @teachers.empty? %>
+  <p>There are no teachers in the school.</p>
+<% else %>
+  <ul>
+    <% @teachers.each do |teacher| %>
+      <li>
+        <%= link_to teacher.name, teacher %> is in house
+        <%= link_to teacher.house.name, teacher.house %>.
+      </li>
+    <% end %>
+  </ul>
+<% end %>
