@@ -1,5 +1,6 @@
 # Run this script using: rails db:seed
 
+Appointment.destroy_all
 Student.destroy_all
 Teacher.destroy_all
 House.destroy_all
