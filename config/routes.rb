@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pages
   # GET / => houses#index
   root to: "houses#index"
 
