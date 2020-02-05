@@ -18,12 +18,34 @@ NUMBER_OF_HOUSES.times do
     house.students.create(name: Faker::Movies::HarryPotter.unique.character)
   end
 
-  number_of_teachers = rand(1..2)
+  number_of_teachers = rand(2..3)
   number_of_teachers.times do
     house.teachers.create(name: Faker::Movies::HarryPotter.unique.character)
+  end
+end
+
+# Method A
+# teachers = Teacher.all.sample(10)
+
+# Method B
+# teachers = Teacher.order(Arel.sql('random()')).limit(10)
+
+# Method C
+number_of_teachers = 10
+teacher_offset = rand(Teacher.count - number_of_teachers)
+teachers = Teacher.offset(teacher_offset).limit(number_of_teachers)
+
+teachers.each do |teacher|
+  number_of_students = 3
+  student_offset = rand(Student.count - number_of_students)
+  students = Student.offset(student_offset).limit(number_of_students)
+  students.each do |student|
+    start_time = Faker::Time.forward(days: rand(0..60), period: :morning)
+    Appointment.create(student: student, teacher: teacher, start_time: start_time)
   end
 end
 
 puts "Created #{House.count} Houses."
 puts "Created #{Student.count} Students."
 puts "Created #{Teacher.count} Teachers."
+puts "Created #{Appointment.count} Appointments."
