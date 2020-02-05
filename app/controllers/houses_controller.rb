@@ -9,7 +9,7 @@ class HousesController < ApplicationController
 
   # GET /houses/:id
   def show
-    @house = House.find(params[:id])
+    @house = House.includes(:students, :teachers).find(params[:id])
   end
   # Rails automatically loads the associated view:
   #  app/views/houses/show.html.erb
