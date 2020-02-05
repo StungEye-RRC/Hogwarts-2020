@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   # GET /students/:id => students#show
   resources "students", only: %i[index show]
 
+  # GET /teachers     => teachers#index
+  # GET /teachers/:id => teachers#show
   resources "teachers", only: %i[index show]
 end
