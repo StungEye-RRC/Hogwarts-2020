@@ -1,3 +1,18 @@
 <h2><%= @teacher.name %></h2>
 
 <p>This teacher belongs to house <%= link_to @teacher.house.name, @teacher.house %>.</p>
+
+<h3>Appointments</h3>
+
+<% if @teacher.appointments.empty? %>
+  <p>No appointments for <%= @teacher.name %>.</p>
+<% else %>
+  <ul>
+    <% @teacher.appointments.each do |app| %>
+      <li>
+        Appointment with <%= link_to app.student.name, app.student %>
+        on <%= app.appointment_date %>.
+      </li>
+    <% end %>
+  </ul>
+<% end %>
