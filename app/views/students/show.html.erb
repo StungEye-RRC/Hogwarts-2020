@@ -2,3 +2,16 @@
 <p>
   This student belongs to house <%= link_to @student.house.name, @student.house %>.
 </p>
+
+<h3>Appointments</h3>
+
+<% if @student.teachers.empty? %>
+  <p><%= @student.name %> has never had an appointment with a teacher.</p>
+<% else %>
+  <p>Here are the teachers <%= @student.name %> has appointments with: </p>
+  <ul>
+    <% @student.teachers.each do |teacher| %>
+      <li><%= link_to teacher.name, teacher %></li>
+    <% end %>
+  </ul>
+<% end %>

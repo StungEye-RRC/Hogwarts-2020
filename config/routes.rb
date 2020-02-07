@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :pages
-
   # GET / => houses#index
   root to: "houses#index"
 
@@ -16,5 +14,8 @@ Rails.application.routes.draw do
   # GET /teachers/:id => teachers#show
   resources "teachers", only: %i[index show]
 
-  get ":permalink", to: "pages#by_permalink", as: "permalink"
+  # Generate all 7 RESTful routes:
+  resources :pages
+
+  get ":permalink", to: "pages#permalink", as: "permalink"
 end

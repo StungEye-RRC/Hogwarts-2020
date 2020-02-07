@@ -1,5 +1,6 @@
 # Run this script using: rails db:seed
 
+Page.destroy_all
 Appointment.destroy_all
 Student.destroy_all
 Teacher.destroy_all
@@ -18,32 +19,25 @@ NUMBER_OF_HOUSES.times do
     house.students.create(name: Faker::Movies::HarryPotter.unique.character)
   end
 
-  number_of_teachers = rand(2..3)
+  number_of_teachers = rand(3..4)
   number_of_teachers.times do
     house.teachers.create(name: Faker::Movies::HarryPotter.unique.character)
   end
 end
 
-# Method A
-# teachers = Teacher.all.sample(10)
+teachers_with_appointments = Teacher.random_collection(10)
 
-# Method B
-# teachers = Teacher.order(Arel.sql('random()')).limit(10)
-
-# Method C
-teachers = Teacher.random_collection(10)
-
-teachers.each do |teacher|
-  students = Student.random_collection(3)
-
+teachers_with_appointments.each do |teacher|
+  students = Student.random_collection(4)
   students.each do |student|
-    start_time = Faker::Time.forward(days: rand(0..60), period: :morning)
-    Appointment.create(student: student, teacher: teacher, start_time: start_time)
+    Appointment.create(student:          student,
+                       teacher:          teacher,
+                       appointment_date: Faker::Time.forward(days: 50, period: :morning))
   end
 end
 
-Page.create(title: "About Us", content: "Update this content.", permalink: "about_us")
-Page.create(title: "Contact", content: "Update this content.", permalink: "contact")
+Page.create(title: "About Hogwarts", content: "Fill this is.", permalink: "about_hogwarts")
+Page.create(title: "Contact Us", content: "Fill this is.", permalink: "contact")
 
 puts "Created #{House.count} Houses."
 puts "Created #{Student.count} Students."
