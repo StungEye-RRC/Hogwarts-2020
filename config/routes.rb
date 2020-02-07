@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :pages
+
   # GET / => houses#index
   root to: "houses#index"
 
@@ -14,4 +15,6 @@ Rails.application.routes.draw do
   # GET /teachers     => teachers#index
   # GET /teachers/:id => teachers#show
   resources "teachers", only: %i[index show]
+
+  get ":permalink", to: "pages#by_permalink", as: "permalink"
 end

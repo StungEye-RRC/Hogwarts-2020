@@ -31,19 +31,19 @@ end
 # teachers = Teacher.order(Arel.sql('random()')).limit(10)
 
 # Method C
-number_of_teachers = 10
-teacher_offset = rand(Teacher.count - number_of_teachers)
-teachers = Teacher.offset(teacher_offset).limit(number_of_teachers)
+teachers = Teacher.random_collection(10)
 
 teachers.each do |teacher|
-  number_of_students = 3
-  student_offset = rand(Student.count - number_of_students)
-  students = Student.offset(student_offset).limit(number_of_students)
+  students = Student.random_collection(3)
+
   students.each do |student|
     start_time = Faker::Time.forward(days: rand(0..60), period: :morning)
     Appointment.create(student: student, teacher: teacher, start_time: start_time)
   end
 end
+
+Page.create(title: "About Us", content: "Update this content.", permalink: "about_us")
+Page.create(title: "Contact", content: "Update this content.", permalink: "contact")
 
 puts "Created #{House.count} Houses."
 puts "Created #{Student.count} Students."
