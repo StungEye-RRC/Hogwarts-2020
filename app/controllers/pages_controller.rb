@@ -1,9 +1,9 @@
 class PagesController < ApplicationController
-  http_basic_authenticate_with name: "wally", password: "glutton", except: [:by_permalink]
+  http_basic_authenticate_with name: "wally", password: "glutton", except: [:permalink]
   before_action :set_page, only: %i[show edit update destroy]
 
   # GET /static/:permalink    ====> params[:permalink]
-  def by_permalink
+  def permalink
     @page = Page.find_by(permalink: params[:permalink])
 
     redirect_to root_path if @page.nil?
