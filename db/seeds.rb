@@ -24,10 +24,10 @@ NUMBER_OF_HOUSES.times do
   end
 end
 
-teachers_with_appointments = Teacher.all.sample(10)
+teachers_with_appointments = Teacher.random_collection(10)
 
 teachers_with_appointments.each do |teacher|
-  students = Student.all.sample(4)
+  students = Student.random_collection(4)
   students.each do |student|
     Appointment.create(student:          student,
                        teacher:          teacher,
