@@ -1,5 +1,6 @@
 # Run this script using: rails db:seed
 
+Page.destroy_all
 Appointment.destroy_all
 Student.destroy_all
 Teacher.destroy_all
@@ -34,6 +35,9 @@ teachers_with_appointments.each do |teacher|
                        appointment_date: Faker::Time.forward(days: 50, period: :morning))
   end
 end
+
+Page.create(title: "About Hogwarts", content: "Fill this is.", permalink: "about_hogwarts")
+Page.create(title: "Contact Us", content: "Fill this is.", permalink: "contact")
 
 puts "Created #{House.count} Houses."
 puts "Created #{Student.count} Students."
