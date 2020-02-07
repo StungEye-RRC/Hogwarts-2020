@@ -8,6 +8,17 @@
   <%= @house.points %> points.
 </p>
 
+<h3>Teachers in house <%= @house.name %></h3>
+<% if @house.teachers.empty? %>
+  <p>There are no teachers in this house.</p>
+<% else %>
+  <ul>
+    <% @house.teachers.each do |teacher| %>
+      <li><%= link_to teacher.name, teacher %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h3>Students in house <%= @house.name %></h3>
 <% if @house.students.empty? %>
   <p>There are no students in this house.</p>
