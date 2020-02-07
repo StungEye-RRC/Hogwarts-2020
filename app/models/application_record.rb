@@ -6,4 +6,8 @@ class ApplicationRecord < ActiveRecord::Base
     random_offset = rand(number_of_rows_available - size_of_collection)
     offset(random_offset).limit(size_of_collection)
   end
+
+  def self.random
+    random_collection(1).first
+  end
 end
